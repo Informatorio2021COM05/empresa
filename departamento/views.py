@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse, Http404, get_object_or_404,redirect
 from .models import Departamento
 from .forms import DepartamentoForm
+
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def hola_mundo(request):
     #return HttpResponse("Hola Mundo")
@@ -36,9 +38,9 @@ def ver_departamento(request, id):
     }
     return render(request, template, contexto)
 
+@login_required
 def nuevo_dpto(request):
     print(request.POST)
-    
     form = DepartamentoForm()
     if request.method == "POST":
         form = DepartamentoForm(request.POST)
@@ -46,10 +48,10 @@ def nuevo_dpto(request):
             dpto = form.save()
             return redirect("departamento:ver_departamento", dpto.id)
 
-
     contexto = {"form":form}
     template = "departamento/nuevo.html"
     return render(request, template, contexto)
+
 
 def editar_departamento(request,id):
     try:
@@ -70,3 +72,7 @@ def editar_departamento(request,id):
     template = "departamento/nuevo.html"
     contexto = {"form":form}
     return render(request, template, contexto)
+
+
+def prueba_base(request):
+    return render(request, "base.html", {})

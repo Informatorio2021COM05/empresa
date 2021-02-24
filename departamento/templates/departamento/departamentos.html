@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departamentos</title>
-</head>
-<body>
-    <h1>Departamentos: {{ lista_dptos.count }}</h1>
-    {% for dpto in lista_dptos %}
-        <a href="{% url 'departamento:ver_departamento' dpto.id %}">Ir al dpto</a>
-        <p>{{ dpto.nombre }} - id: {{dpto.id}}</p>
-        {{ forloop.counter }}
-    {% endfor %}
 
-    {% if lista_dptos.count > 2 %}
-        <h2>HAY MAS DE dos Departamentos</h2>
-    {% else %}
-        <h2>NO HAY MAS DE dos Departamentos</h2>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+    departamentos
+{% endblock %}
+
+{% block contenido %}
+<h1>Departamentos: {{ lista_dptos.count }}</h1>
+{% for dpto in lista_dptos %}
+    <a href="{% url 'departamento:ver_departamento' dpto.id %}">Ir al dpto</a>
+    <p>{{ dpto.nombre }} - id: {{dpto.id}}</p>
+    {{ forloop.counter }}
+{% endfor %}
+
+{% if lista_dptos.count > 2 %}
+    <h2>HAY MAS DE dos Departamentos</h2>
+{% else %}
+    <h2>NO HAY MAS DE dos Departamentos</h2>
+{% endif %}
+{% endblock %}
+

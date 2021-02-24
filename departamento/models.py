@@ -6,3 +6,11 @@ class Departamento(models.Model):
 
     def __str__(self):
         return "departamento: " + self.nombre
+
+    def sueldo_total(self):
+
+        empleados = self.empleado_set.all()
+        total = 0
+        for emp in empleados:
+            total += emp.sueldo
+        return total

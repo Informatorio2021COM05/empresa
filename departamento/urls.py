@@ -11,4 +11,5 @@ urlpatterns = [
     path("nuevo/", views.nuevo_dpto, name="nuevo_dpto"),
     path("<int:id>/editar/", views.editar_departamento, name="editar_departamento"),
     #editar departamettno
+    path("prueba_base/", views.prueba_base, name="prueba_base")
 ]
